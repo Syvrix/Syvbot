@@ -37,6 +37,7 @@ async def save_roles_permissions(guild):
         json.dump(roles_data, f, indent=4)
     
     print("Roles and permissions saved to roles_permissions.json")
+    return roles_data
 
 ## Create a list of all available permissions to a user ##
 async def get_available_perms():
@@ -49,12 +50,13 @@ async def get_available_perms():
             
 async def get_roles_by_permission(guild):
     # Get the roles data from the file
-    roles_data = await save_roles_permissions
+    roles_data = await save_roles_permissions(guild)
+    print(roles_data)
     if not roles_data:
         return "no roles found"
     
     # Load all possible permissions from the "List_all_role_perm.json" file
-    with open('list_all_role_perms', 'r') as f:
+    with open('servers/list_all_role_perms.json', 'r') as f:
         all_permissions = json.load(f)
     
     #initilize a dictionary to store perms as key:value pairs.
@@ -62,10 +64,20 @@ async def get_roles_by_permission(guild):
     
     # Loop throuh each role's permissions and group the roles
     for role in roles_data:
-        role_name = role["role_name"]
+        role_name = role["name"]
         permissions = role["permissions"]
         
         for permission in permissions:
             if permission in all_permissions:
                 permission_groups[permission].append(role_name)
+                
+    # Convert dic to normal dic for clean output.
+    permission_groups= dict(permission_groups)
+    
+    # Format the result as string for display.
+    result = ""
+    for permission, roles in permission_groups.items():
+        result+= f"**{permission}**: {', '.join(roles)}\n"
+        
+    return result
         

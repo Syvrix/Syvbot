@@ -30,6 +30,15 @@
         ]
     },
     {
+        "name": "Syvbot",
+        "permissions": [
+            "send_messages",
+            "read_message_history",
+            "manage_roles",
+            "use_application_commands"
+        ]
+    },
+    {
         "name": "test 2",
         "permissions": [
             "create_instant_invite",
@@ -37,15 +46,6 @@
             "change_nickname",
             "send_messages_in_threads",
             "moderate_members"
-        ]
-    },
-    {
-        "name": "Syvbot",
-        "permissions": [
-            "send_messages",
-            "read_message_history",
-            "manage_roles",
-            "use_application_commands"
         ]
     },
     {
