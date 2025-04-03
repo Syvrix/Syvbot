@@ -1,5 +1,5 @@
 # Syvbot
-Discord bot to all roles and role permissions.
+Discord bot to get all roles and their permissions in a strucutred way with support for json.
 
 ## Setup ##
 Use venv to create virtual enviroment
