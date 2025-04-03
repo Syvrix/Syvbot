@@ -66,7 +66,7 @@ async def list_role_perms(interaction: discord.Interaction):
     ## Collect all roles and perms ##
     result = await get_roles_by_permission(guild)
     ## Send the collected result ""
-    await interaction.response.send_message("result is: " + result)
+    await interaction.response.send_message(result)
         
 ## Start bot and loggin"
 @bot.event

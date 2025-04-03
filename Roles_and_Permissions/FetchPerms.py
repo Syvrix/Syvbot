@@ -5,6 +5,7 @@ import discord
 import os
 from .foldersetup import return_guild_folder # Code to create folder/dump data
 from collections import defaultdict
+import textwrap
 
 
 
@@ -60,7 +61,9 @@ async def get_roles_by_permission(guild):
         all_permissions = json.load(f)
     
     #initilize a dictionary to store perms as key:value pairs.
-    permission_groups = defaultdict(list)
+    #permission_groups = defaultdict(list)
+    permission_groups = {perm: [] for perm in all_permissions}  # Assuming `all_permissions` is a predefined list of all possible permissions
+
     
     # Loop throuh each role's permissions and group the roles
     for role in roles_data:
@@ -75,9 +78,25 @@ async def get_roles_by_permission(guild):
     permission_groups= dict(permission_groups)
     
     # Format the result as string for display.
-    result = ""
+    result = "Roles by Permissions:\n\n"
+    
+
     for permission, roles in permission_groups.items():
-        result+= f"**{permission}**: {', '.join(roles)}\n"
+        if roles:
+            #result+= f"**{permission}**: {', '.join(roles)}\n"
+            result+= f"**{permission}**:\n"
+            #for role in roles:
+            #    result+=f"• {role}\n"        
+            
+            # print in columns
+            roles_columns = textwrap.fill(', '.join(roles), width=60)  # Break the role list into lines, each with a max width of 60 characters
+            columns = roles_columns.splitlines()
+            
+            formatted_result = ""
+            for i in range(0, len(columns), 3):  # Process groups of 3 roles per row
+                formatted_result += f"{columns[i]:<20}  {columns[i+1]:<20}  {columns[i+2]:<20}\n" if len(columns) > i + 2 else ""
+            
+            result += formatted_result
         
     return result
         
