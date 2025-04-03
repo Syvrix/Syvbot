@@ -3,12 +3,10 @@
 import json # Data strucutre and management for files.
 import discord
 import os
-from .foldersetup import return_guild_folder # Code to create folder/dump data
+from .foldersetup import return_guild_folder, server_role_file_path # Code to create folder/dump data
 from collections import defaultdict
 
-
-
-
+    
 async def save_roles_permissions(guild):
     # Fetch the guild (server) you are in
     # guild = bot.get_guild(YOUR_GUILD_ID)  # Replace with your guild ID
@@ -31,9 +29,9 @@ async def save_roles_permissions(guild):
     
     # Save to a JSON file
     folder_path=return_guild_folder(guild.id)
-    file_path=os.path.join(folder_path, "roles_permissions.json")
+    #print(server_role_file_path(guild))
     print("saving to json file: " + folder_path)
-    with open(file_path, "w") as f:
+    with open(server_role_file_path(guild), "w") as f:
         json.dump(roles_data, f, indent=4)
     
     print("Roles and permissions saved to roles_permissions.json")

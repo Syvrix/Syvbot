@@ -10,6 +10,7 @@ from dotenv import dotenv_values
 from Roles_and_Permissions.FetchPerms import save_roles_permissions
 from Roles_and_Permissions.FetchPerms import get_available_perms
 from Roles_and_Permissions.FetchPerms import get_roles_by_permission
+from Roles_and_Permissions.foldersetup import server_role_file_path
 
 
 
@@ -50,7 +51,10 @@ async def save_roles(interaction: discord.Interaction):
     
     if guild:
         await save_roles_permissions(guild)
-        await interaction.response.send_message("Roles has been saved", ephemeral=True)
+        #await interaction.response.send_message("Roles has been saved", ephemeral=True)
+        p = server_role_file_path(guild)
+        with open(p, 'rb') as f:
+            await interaction.response.send_message(file=discord.File(f, p))
     else:
         await interaction.response.send_message("Unable to fetch roles, insufficient permissions")
     
@@ -72,7 +76,7 @@ async def list_role_perms(interaction: discord.Interaction):
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
-    if not os.path.exists('servers\list_all_role_perms.json'):
+    if not os.path.exists('servers/list_all_role_perms.json'):
         print("getting role perms list...")
         await get_available_perms()
         print("DONE: getting role perm list ")
