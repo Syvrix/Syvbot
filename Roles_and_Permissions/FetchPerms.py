@@ -1,8 +1,10 @@
 # FetchPerms
 ## Import modules and necissities. ##
-import json # Data strucutre and management for files.
+import json
+from unittest import result # Data strucutre and management for files.
 import discord
 import os
+
 from .foldersetup import return_guild_folder, server_role_file_path # Code to create folder/dump data
 from collections import defaultdict
 
@@ -60,7 +62,6 @@ async def get_roles_by_permission(guild):
     #initilize a dictionary to store perms as key:value pairs.
     #permission_groups = defaultdict(list)
     permission_groups = {perm: [] for perm in all_permissions}  # Assuming `all_permissions` is a predefined list of all possible permissions
-
     
     # Loop throuh each role's permissions and group the roles
     for role in roles_data:
@@ -69,10 +70,17 @@ async def get_roles_by_permission(guild):
         
         for permission in permissions:
             if permission in all_permissions:
-                permission_groups[permission].append(role_name)
-                
+                permission_groups[permission].append(role_name)         
+    
+    #print("syphex")
+    #print(permission_groups)        
+    #print("syphex")
+    #json.load(str(permission_groups).replace("\'", "\"")) # converts dict to json format.
+    return format_result(permission_groups)
+        
+def format_result(group):
     # Convert dic to normal dic for clean output.
-    permission_groups= dict(permission_groups)
+    permission_groups=dict(group)
     
     # Find the length of the longest permission name
     #max_permission_length = max(len(permission) for permission in permission_groups)
@@ -87,6 +95,4 @@ async def get_roles_by_permission(guild):
             result += f"{permission_padded} : {', '.join(roles)}\n"  # Format the output
             
     result += "```"  # Close the preformatted code block
-            
     return result
-        
