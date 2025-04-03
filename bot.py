@@ -45,7 +45,7 @@ async def save_roles(ctx):
     await save_roles_permissions(get_guild)
 
 ##### Slash commands #####
-@tree.command(name="roles", description="Lists your Discord roles") 
+@tree.command(name="roles", description="Creates a file with all your roles and their permissions in JSON format.") 
 async def save_roles(interaction: discord.Interaction):
     guild = interaction.guild
     
