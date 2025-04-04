@@ -54,7 +54,7 @@ async def save_roles(interaction: discord.Interaction):
         #await interaction.response.send_message("Roles has been saved", ephemeral=True)
         p = server_role_file_path(guild)
         with open(p, 'rb') as f:
-            await interaction.response.send_message(file=discord.File(f, p))
+            await interaction.response.send_message(file=discord.File(f, p), ephemeral=True)
     else:
         await interaction.response.send_message("Unable to fetch roles, insufficient permissions")
     
