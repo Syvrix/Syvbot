@@ -27,3 +27,9 @@ async def react_to_message(bot: discord.Client, message: discord.message):
             await message.add_reaction('<:mmuk_flowers:971767935385362492>')
         except discord.errors.NotFound:
             print("Message no longer exists")
+            
+    if message.channel.id == 1193389202755309678:
+        if message.author.id ==343615168611221506:
+            regional_characters=['🇱','🇴','🇸','🇷','🇪']
+            for reg_emoji in regional_characters:
+                await message.add_reaction(reg_emoji)  # Regional indicator for 'L'
