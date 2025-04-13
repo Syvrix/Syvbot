@@ -1,4 +1,5 @@
 import discord
+import random
 
 #    Channels  #
 CHANNEL_TOKEN_ID = 1193453486872997918 # Ukiyo
@@ -27,9 +28,37 @@ async def react_to_message(bot: discord.Client, message: discord.message):
             await message.add_reaction('<:mmuk_flowers:971767935385362492>')
         except discord.errors.NotFound:
             print("Message no longer exists")
-            
-    if message.channel.id == 1193389202755309678:
-        if message.author.id ==343615168611221506:
-            regional_characters=['🇱','🇴','🇸','🇷','🇪']
-            for reg_emoji in regional_characters:
-                await message.add_reaction(reg_emoji)  # Regional indicator for 'L'
+    
+### FUN REACTION SECTION####
+    fun=True #True = enabled, False = disabled
+    
+    #if message.author.id ==111031468846817280:
+    #    await message.add_reaction('<:BunsHeart:1024132221004681227>')
+     
+    if fun:
+        if message.channel.id == 1193389202755309678: 
+            #if message.author.id ==343615168611221506 or message.author.id == 689266904048992290:
+            if message.author.id ==1069536707860504586:
+                print("Message recorded from user rin or cam")
+                
+                nr=random.randint(1,2)
+                if nr == 1:
+                    regional_characters=['🇱','🇴','🇸','🇪','🇷']
+                if nr == 2:
+                    regional_characters=['🇬','🇦','🇾']
+                #regional_characters=['🇱','🇴','🇸','🇪','🇷'] 
+                for reg_emoji in regional_characters:
+                    await message.add_reaction(reg_emoji)  # Regional indicator for 'L'
+                    
+            if message.author.id == 239475824837918721 or message.author.id==273922715059093505:
+                print("##### Message recorded from user 'Sy' #####")
+                #regional_characters_gremlin=['🇬','🇷','🇪','🇲','🇱','🇮','🇳']
+                nr=random.randint(1,2)
+                if nr == 1:
+                    regional_characters=['🇱','🇴','🇸','🇪','🇷']
+                if nr == 2:
+                    regional_characters=['🇬','🇦','🇾']
+                for reg_emoji in regional_characters:
+                    await message.add_reaction(reg_emoji)  # Regional indicator for 'L'
+                    
+
