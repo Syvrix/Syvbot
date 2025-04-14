@@ -78,6 +78,13 @@ async def sync_commands():
 @tree.command(name="roles", description="Creates a file with all your roles and their permissions in JSON format.") 
 async def save_roles(interaction: discord.Interaction):
     guild = interaction.guild
+        # Add command if admin.
+    admin_command=True
+    if admin_command:
+        await command_is_admin(interaction)
+    try:
+        await command_check_all(interaction) # Go through all tests.
+    except: return
     
     if guild:
         await save_roles_permissions(guild)
