@@ -3,8 +3,8 @@ class CommandCheckFailure(Exception):
 
 # Runs all checks for code readability
 async def command_check_all(interaction):
-    command_is_in_server(interaction)
-    is_user_admin(interaction)
+    await command_is_in_server(interaction)
+    await is_user_admin(interaction)
 
 # Check if command is ran in server
 async def command_is_in_server(interaction):
