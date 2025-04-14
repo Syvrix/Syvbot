@@ -73,43 +73,43 @@ async def sync_commands():
                 if not guild.get_member(bot.user.id).guild_permissions.administrator:
                     await bot.tree.remove_command(command.name, guild=guild)
 
-##### Slash commands #####
-## 1
-#@tree.command(name="roles", description="Creates a file with all your roles and their permissions in JSON format.") 
-#async def save_roles(interaction: discord.Interaction):
-#    guild = interaction.guild
-#        # Add command if admin.
-#    admin_command=True
-#    if admin_command:
-#        await command_is_admin(interaction)
-#    try:
-#        await command_check_all(interaction) # Go through all tests.
-#    except: return
-#    
-#    if guild:
-#        await save_roles_permissions(guild)
-#        #await interaction.response.send_message("Roles has been saved", ephemeral=True)
-#        p = server_role_file_path(guild)
-#        with open(p, 'rb') as f:
-#            await interaction.response.send_message(file=discord.File(f, p), ephemeral=True)
-#    else:
-#        await interaction.response.send_message("Unable to fetch roles, insufficient permissions")
-#    
-## 2
-#@tree.command(name="listrolesperms", description="List all roles sectioned under permissions.")
-#async def list_role_perms(interaction: discord.Interaction):
-#    # Add command if admin.
-#    admin_command=True
-#    if admin_command:
-#        await command_is_admin(interaction)
-#    try:
-#        await command_check_all(interaction) # Go through all tests.
-#    except: return
-#    
-#    ## Collect all roles and perms ##
-#    result = await get_roles_by_permission(interaction.guild)
-#    ## Send the collected result ""
-#    await interaction.response.send_message(result, ephemeral=True)
+#### Slash commands #####
+# 1
+@tree.command(name="roles", description="Creates a file with all your roles and their permissions in JSON format.") 
+async def save_roles(interaction: discord.Interaction):
+    guild = interaction.guild
+        # Add command if admin.
+    admin_command=True
+    if admin_command:
+        await command_is_admin(interaction)
+    try:
+        await command_check_all(interaction) # Go through all tests.
+    except: return
+    
+    if guild:
+        await save_roles_permissions(guild)
+        #await interaction.response.send_message("Roles has been saved", ephemeral=True)
+        p = server_role_file_path(guild)
+        with open(p, 'rb') as f:
+            await interaction.response.send_message(file=discord.File(f, p), ephemeral=True)
+    else:
+        await interaction.response.send_message("Unable to fetch roles, insufficient permissions")
+    
+# 2
+@tree.command(name="listrolesperms", description="List all roles sectioned under permissions.")
+async def list_role_perms(interaction: discord.Interaction):
+    # Add command if admin.
+    admin_command=True
+    if admin_command:
+        await command_is_admin(interaction)
+    try:
+        await command_check_all(interaction) # Go through all tests.
+    except: return
+    
+    ## Collect all roles and perms ##
+    result = await get_roles_by_permission(interaction.guild)
+    ## Send the collected result ""
+    await interaction.response.send_message(result, ephemeral=True)
     
 ## Start bot and loggin"
 @bot.event
