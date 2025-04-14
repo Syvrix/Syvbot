@@ -30,7 +30,7 @@ async def react_to_message(bot: discord.Client, message: discord.message):
             print("Message no longer exists")
     
 ### FUN REACTION SECTION####
-    fun=True #True = enabled, False = disabled
+    fun=False #True = enabled, False = disabled
     
     #if message.author.id ==111031468846817280:
     #    await message.add_reaction('<:BunsHeart:1024132221004681227>')
