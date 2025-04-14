@@ -5,7 +5,7 @@ from unittest import result # Data strucutre and management for files.
 import discord
 import os
 
-from .foldersetup import return_guild_folder, server_role_file_path # Code to create folder/dump data
+from .foldersetup import return_guild_folder, server_role_file_path, create_server_folder # Code to create folder/dump data
 from collections import defaultdict
 
     
@@ -41,6 +41,8 @@ async def save_roles_permissions(guild):
 
 ## Create a list of all available permissions to a user ##
 async def get_available_perms():
+    create_server_folder() 
+    
     path='servers/list_all_role_perms.json'
     if not os.path.exists(path):
         all_permissions = list(discord.Permissions.VALID_FLAGS.keys())

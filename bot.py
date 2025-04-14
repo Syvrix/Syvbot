@@ -14,8 +14,8 @@ from Roles_and_Permissions.FetchPerms import get_roles_by_permission
 from Roles_and_Permissions.foldersetup import server_role_file_path
 from Functions.react_to_messages import react_to_message
 
-# Get what os is being ran
-print(os.name)
+
+
 # Intent is used to only fetch data im out after.
 intents = discord.Intents.default()
 intents.members = True  # To allow access to member data

@@ -2,6 +2,12 @@
 truepath = ""
 
 import os
+
+#Checks if guild folder exists, if not creates it.
+def create_server_folder():
+    if not os.path.exists('servers'):
+        os.makedirs('servers')  # Create the 'servers' directory if it doesn't exist    
+
 def return_guild_folder(guild_id):
     global truepath 
     if truepath == "":
