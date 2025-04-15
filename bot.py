@@ -18,9 +18,6 @@ from Functions.react_to_messages import react_to_message
 # Lists and globals
 ## List that stores what commands are for admins only 
 list_admin_commands=[]
-async def command_is_admin(command): # Add command to admin list if command is admin
-    if command.name not in list_admin_commands:
-        list_admin_commands.append(command.name)
 
 # Add command to admin list if command is admin
 async def command_is_admin(integration):
