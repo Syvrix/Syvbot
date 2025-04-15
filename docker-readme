@@ -12,7 +12,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run the bot
-CMD ["python", "bot.py"]'
+CMD ["python","-u", "bot.py"]' # by default docker buffers output, -u means it doesnt buffer the output and instantly writes it.
 
 
 # 2. Build docker image
