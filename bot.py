@@ -1,4 +1,6 @@
+from ast import excepthandler
 from code import interact
+from math import e
 import os
 from pickletools import read_decimalnl_long
 from unittest import result
@@ -8,22 +10,31 @@ from discord import app_commands
 from dotenv import dotenv_values
 
 # Import functions
-from Roles_and_Permissions.FetchPerms import save_roles_permissions
-from Roles_and_Permissions.FetchPerms import get_available_perms
-from Roles_and_Permissions.FetchPerms import get_roles_by_permission
+from Roles_and_Permissions.FetchPerms import save_roles_permissions, get_available_perms ,get_roles_by_permission
 from Roles_and_Permissions.foldersetup import server_role_file_path
-from Functions.user_commands_permissions import command_is_in_server, command_check_all
+from Functions.user_commands_permissions import command_check_all
 from Functions.react_to_messages import react_to_message
 
 # Lists and globals
 ## List that stores what commands are for admins only 
 list_admin_commands=[]
 
+async def admin_command(integration):
+    await command_is_admin(integration)
+    try:
+        await command_check_all(integration) # Go through all tests.
+    except Exception as e: 
+        print("Exception raised" + str(e))
+        return
+    
+
 # Add command to admin list if command is admin
 async def command_is_admin(integration):
     #check if command already is added to list
     if integration.command.name not in list_admin_commands:
         list_admin_commands.append(integration.command.name)
+        print("Command added to admin list")
+        print(list_admin_commands)
 
 # BOT properties
 ## Intent is used to only fetch data im out after. 
@@ -75,13 +86,8 @@ async def sync_commands():
 @tree.command(name="roles", description="Creates a file with all your roles and their permissions in JSON format.") 
 async def save_roles(interaction: discord.Interaction):
     guild = interaction.guild
-        # Add command if admin.
-    admin_command=True
-    if admin_command:
-        await command_is_admin(interaction)
-    try:
-        await command_check_all(interaction) # Go through all tests.
-    except: return
+    # Since command is admin run admin def.
+    admin_command(interaction)
     
     if guild:
         await save_roles_permissions(guild)
@@ -96,12 +102,7 @@ async def save_roles(interaction: discord.Interaction):
 @tree.command(name="listrolesperms", description="List all roles sectioned under permissions.")
 async def list_role_perms(interaction: discord.Interaction):
     # Add command if admin.
-    admin_command=True
-    if admin_command:
-        await command_is_admin(interaction)
-    try:
-        await command_check_all(interaction) # Go through all tests.
-    except: return
+    admin_command
     
     ## Collect all roles and perms ##
     result = await get_roles_by_permission(interaction.guild)
