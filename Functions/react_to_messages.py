@@ -23,9 +23,13 @@ async def react_to_message(bot: discord.Client, message: discord.message):
         print("new selfie post detected...\nadding emojis.")
         #print([e.name for e in message.guild.emojis]) # Prints out emojis bot has access to.
         try:
-            await message.add_reaction('<:bbuk_bunnyholdinghearts:953801325588668477>')
-            await message.add_reaction('<:BunsHeart:1024132221004681227>')
-            await message.add_reaction('<:mmuk_flowers:971767935385362492>')
+            await message.add_reaction('<:emoji_15:1374089414120308786>')
+            await message.add_reaction('<:emoji_17:1374089454150615090>')
+            await message.add_reaction('<:emoji_18:1374089472286920785>')
+            #!Syvrix -> Old emojis
+            # await message.add_reaction('<:bbuk_bunnyholdinghearts:953801325588668477>')
+            # await message.add_reaction('<:BunsHeart:1024132221004681227>')
+            # await message.add_reaction('<:mmuk_flowers:971767935385362492>')
         except discord.errors.NotFound:
             print("Message no longer exists")
     
