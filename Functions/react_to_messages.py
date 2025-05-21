@@ -23,9 +23,9 @@ async def react_to_message(bot: discord.Client, message: discord.message):
         print("new selfie post detected...\nadding emojis.")
         #print([e.name for e in message.guild.emojis]) # Prints out emojis bot has access to.
         try:
-            await message.add_reaction('<:emoji_15:1374089414120308786>')
-            await message.add_reaction('<:emoji_17:1374089454150615090>')
-            await message.add_reaction('<:emoji_18:1374089472286920785>')
+            await message.add_reaction('<:ukiflwr1:1374838157417386085>')
+            await message.add_reaction('<:ukiflwr2:1374838259498225835>')
+            await message.add_reaction('<:ukiflwr3:1374838322941136937>')
             #!Syvrix -> Old emojis
             # await message.add_reaction('<:bbuk_bunnyholdinghearts:953801325588668477>')
             # await message.add_reaction('<:BunsHeart:1024132221004681227>')
