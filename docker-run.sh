@@ -14,4 +14,4 @@ docker run -d \
 docker ps
 
 # 4. Show logs
-docker logs -f syvbot
+#docker logs -f syvbot
